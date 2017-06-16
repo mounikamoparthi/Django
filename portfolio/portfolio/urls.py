@@ -18,6 +18,6 @@ from django.contrib import admin
 #def test(request):
  #   print 'sdfghjklsdfghjkl'
 urlpatterns = [
-    url(r'^', include('apps.portfolio_app.urls')) # And now we use the include function to pull in our first_app.urls...
+    url(r'^', include('apps.portfolio_app.urls')), # And now we use the include function to pull in our first_app.urls...
   ]
  
