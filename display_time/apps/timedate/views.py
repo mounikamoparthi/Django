@@ -5,6 +5,6 @@ from datetime import datetime
 
 def index(request):
     context = {
-        'time': 'datetime.now()'
+        'time': datetime.now()
     }
     return render(request, 'timedate/index.html',context)
