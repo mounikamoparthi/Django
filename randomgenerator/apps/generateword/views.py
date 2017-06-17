@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+#rom __future__ import unicode_literals
 
 from django.shortcuts import render
+import random
+import string
 
-# Create your views here.
+def index(request):
+    random = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(14)])
+    print random
+    return render(request, 'generateword/index.html')
