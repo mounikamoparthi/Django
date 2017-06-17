@@ -4,7 +4,7 @@
 from django.shortcuts import render, HttpResponse
 def index(request):
     context ={
-        "name":"name"
+        "name":"Mounika"
     }
     return render(request, 'portfolio_app/index.html', context)
 def projects(request):
