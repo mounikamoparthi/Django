@@ -16,6 +16,10 @@ def create(request):
         return redirect('/result')
     
 def result(request):
+    if 'counter' in request.session:
+        request.session['counter'] +=1
+    else:
+        request.session['counter'] = 1
     if request.method == "POST":
         return redirect('/')
     return render(request,'takesurvey/result.html')
