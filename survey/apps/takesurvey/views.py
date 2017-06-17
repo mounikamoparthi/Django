@@ -20,6 +20,7 @@ def result(request):
         request.session['counter'] +=1
     else:
         request.session['counter'] = 1
+    # this if else can be in the above method too
     if request.method == "POST":
         return redirect('/')
     return render(request,'takesurvey/result.html')
