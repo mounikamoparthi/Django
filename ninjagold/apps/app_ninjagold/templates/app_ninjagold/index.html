@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title> Ninja Gold </title>
+    </head>
+    <body>
+        Your Gold: <input type= 'text' name = 'score'>
+        <form action = '/', method = "post">
+            <input type = "hidden" name = "action" value="Farm">
+            <h2>    (earns 10-20 gold coins)  </h2>
+            <input type = "submit" value = "Find Gold!">
+        </form>
+        <form action = '/', method = "post">
+            <input type = "hidden" name = "action" value="Cave">
+            <h2>    (earns 5-10 gold coins)  </h2>
+            <input type = "submit" value = "Find Gold!">
+        </form>
+        <form action = '/', method = "post">
+            <input type = "hidden" name = "action" value="House">
+            <h2>    (earns 2-5 gold coins)  </h2>
+            <input type = "submit" value = "Find Gold!">
+        </form>
+        <form action = '/', method = "post">
+            <input type = "hidden" name = "action" value="Casino">
+            <h2>    (earns/takes 0-50 gold coins)  </h2>
+            <input type = "submit" value = "Find Gold!">
+        </form>
+        Activities:<br> <br>
+        <textarea rows="4" cols="50" name = 'comments'>
+            </textarea>
+    </body>
+</html>
