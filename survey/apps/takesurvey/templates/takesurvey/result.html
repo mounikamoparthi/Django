@@ -6,12 +6,14 @@
     
           <h1> Submitted Information </h1>
           <form action = '/result' method = "post">
-            <p> Name: {{ name }} </p>
-            <p> Dojo Location: {{ location }}</p>
-            <p> Favorite language: {{ language }} </p>
-            <p> Comment(optional) :{{comment}} </p>
+           {% csrf_token %}
+            <p> Name: {{ request.session.Name }} </p>
+            <p> Dojo Location: {{ request.session.Location }}</p>
+            <p> Favorite language: {{ request.session.Language }} </p>
+            <p> Comment(optional) :{{request.session.Comments}} </p>
           </form>
-          <form action = '/back' method = 'post'>
+          <form action = '/' method = 'post'>
+           {% csrf_token %}
             <input type='submit' value='Go Back'>
         </form>
     </body>
