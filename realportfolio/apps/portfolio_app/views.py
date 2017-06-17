@@ -7,5 +7,11 @@ def index(request):
         "name":"name"
     }
     return render(request, 'portfolio_app/index.html', context)
+def projects(request):
+    return render(request, 'portfolio_app/projects.html')
+def about(request):
+    return render(request, 'portfolio_app/about.html')
+def testimonials(request):
+    return render(request, 'portfolio_app/testimonials.html')
 
-# Create your views here.
+
