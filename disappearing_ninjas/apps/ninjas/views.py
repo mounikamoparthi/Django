@@ -3,9 +3,13 @@
 
 from django.shortcuts import render, HttpResponse, redirect
 
-def show_ninja(request, ninja):
+def index(request):
 	#ninja got passed in through the url parameter!
-	context = {
-        'myninja' : ninja
+	return render(request, 'ninjas/index.html')
+def show(request, ninja_color):
+    if ninja_color == "red":
+        context = {
+            'ninja_color': '../../static/ninjas/images/leonardo.jpg'
         }
-	return render(request, 'ninjas/showmyninja.html', context)
+    return render(request, 'ninjas/result.html',context)
+    

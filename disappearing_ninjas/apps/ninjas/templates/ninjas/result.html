@@ -1,0 +1,29 @@
+<head>
+       <title>Default</title>
+    </head>
+    <body>
+       
+        <h1> Ninjas! </h1> 
+        {% if ninja_color == 'purple' or ninja_color == null  %} 
+        {% load static %}
+        <img src="{% static 'ninjas/images/donatello.JPG'%}" style="width:304px;height:228px;">
+        {% endif %}
+        {% load static %}
+        {% if ninja_color == 'blue' or ninja_color == null %}
+        <img src="{% static 'ninjas/images/leonardo.JPG' %}" style="width:304px;height:228px;">
+        {% endif %}
+        {% load static %}
+        {% if ninja_color == 'orange' or ninja_color == null %}
+        <img src="{% static 'ninjas/images/michelangelo.JPG'%}" style="width:304px;height:228px;">
+        {% endif %}
+        {% load static %}
+        <!-->{% if ninja_color == 'red' or ninja_color == null %}
+        <img src="{% static 'ninjas/images/raphael.JPG %}" style="width:304px;height:228px;">
+        {% endif %}
+        {% load static %}<!-->
+        {% if ninja_color != 'red' and ninja_color !='blue' and ninja_color !='orange' and ninja_color !='purple' and ninja_color != null %}
+        <img src="{% static 'ninjas/images/notapril.JPG') }}" style="width:304px;height:228px;">
+        {% endif %}
+    
+    </body>
+</html>
