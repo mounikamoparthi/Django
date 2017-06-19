@@ -3,7 +3,7 @@
         <title> Ninja Gold </title>
     </head>
     <body>
-        <h3> Your Gold: {{request.session.gold_count}} </h3>
+        <h3> Your Gold: {{request.session.goldcoins}} </h3>
 
         <form action = '/getcoins', method = "post">
         {% csrf_token %}
@@ -34,7 +34,10 @@
             {% for info in request.session.activities_log %}
                 <p> {{info}} </p>
             {% endfor %}
-        
+        <form action = '/reset' method = 'post'>
+            {% csrf_token %}
+            <input type = 'submit' value = 'reset'>
+        </form>
      
     </body>
 </html>

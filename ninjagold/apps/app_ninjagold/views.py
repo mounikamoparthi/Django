@@ -6,8 +6,8 @@ import random
 from datetime import datetime
 
 def index(request):
-    if 'gold_count' not in request.session:
-        request.session['gold_count'] = 0
+    if 'goldcoins' not in request.session:
+        request.session['goldcoins'] = 0
     if 'activities_log' not in request.session:
         request.session['activities_log'] = []
     return render(request,'app_ninjagold/index.html')
@@ -42,5 +42,9 @@ def goldcoins(request):
             request.session['activities_log'].append(string)
            
         return redirect('/')
+def reset(request):
+        if request.method == "POST":
+            request.session.clear()
+            return redirect('/')
    
 
