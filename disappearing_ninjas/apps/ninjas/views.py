@@ -8,8 +8,7 @@ def index(request):
 	return render(request, 'ninjas/index.html')
 
 def showall(request):
-    if  ninja_color is None:
-        context = {
+    context = {
             'red': '../static/ninjas/images/raphael.jpg',
             'blue': '../static/ninjas/images/leonardo.jpg',
             'purple': '../static/ninjas/images/donatello.jpg',
