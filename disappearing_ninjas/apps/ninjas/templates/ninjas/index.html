@@ -3,10 +3,10 @@
        <title>Default</title>
     </head>
     <body>
-        {{myninja}}
+    
         <h1> No Ninjas here! </h1> 
-            <form action='/show' method='post'>
-            {% csrf_token %}
+          <form action = '/show' method = 'post'>
+          {% csrf_token %}
                 <input type='submit' value='Go to Ninja'>
             </form>
     </body>
