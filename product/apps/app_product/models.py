@@ -5,6 +5,10 @@ from django.db import models
 
 class Product(models.Model):
     name = models.CharField(max_length=38)
-    greeting = models.CharField(max_length=38)
-    created_at = models.DateTimeField(auto_now_add=True)
+    description = models.TextField()
+    weight = models.IntegerField()
+    Price = models.IntegerField()
+    Cost_to_seller = models.IntegerField()
+    category = models.CharField(max_length=38)
+    
 
