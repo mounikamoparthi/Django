@@ -16,7 +16,7 @@ def results(request):
     print request.POST
     str1=''
     for i in range(0,int(request.POST['RandomNum'])):
-        str1 = str1+" "+random.choice(VALUES)
+        str1 = str1+" "+random.choice(VALUES)+'\n'
     context = {
         'number' : str1 
     }
