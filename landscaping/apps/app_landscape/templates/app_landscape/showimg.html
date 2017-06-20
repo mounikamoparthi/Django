@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+    <head>
+        <title> "Random Routing" </title>
+    </head>
+    <body>
+        <h1> Your Random Image of the day: </h1>
+        {% if number > 0 and number < 11 %}
+            <img src = "{%static 'app_landscape/snow.jpg'%}" width ="840" height = "540" >
+        {% endif %}
+        {% if number > 11 and number < 21 %}
+            <img src = "{%static 'app_landscape/forest.jpg'%}" width ="840" height = "540">
+        {% endif %}
+        {% if number > 21 and number < 31 %}
+            <img src = "{%static 'app_landscape/sunrise.jpg'%}" width ="840" height = "540">
+        {% endif %}
+        {% if number > 31 and number < 41 %}
+            <img src = "{%static 'app_landscape/tropical.jpg'%}" width ="840" height = "540">
+        {% endif %}
+        {% if number > 41 and number < 51 %}
+            <img src = "{%static 'app_landscape/desert.jpg'%}" width ="840" height = "540">
+        {% endif %}
+
+    </body>
+</html>
