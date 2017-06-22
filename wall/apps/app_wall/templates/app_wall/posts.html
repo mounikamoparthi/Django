@@ -1,0 +1,25 @@
+<html>
+    <head>
+       <title>Wall Page</title>
+   
+    </head>
+    <body>
+      <h1>Posts</h1>
+      {% for msg in messages1 %}
+        {{msg.message}}
+      {% endfor %}
+
+        <form action="/wall/{{user.id}}" method ="post">
+        {% csrf_token %}
+        
+            <p>
+            <label for="">Title</label>
+            <input type="text"  name="title">
+            </p><p>
+            <textarea name = "messages" rows = "8" cols = "40"></textarea>
+            </p><p>
+            <input  type="submit" value="Enter Post">
+            </p>
+        </form>
+    </body>
+</html>

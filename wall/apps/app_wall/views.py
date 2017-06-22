@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 from .models import User, Message, Comment
 def index(request):
     context = {
-        "users": User.objects.all()
+        "users": User.objects.all(),
+        "message11": Message.objects.all()
     }
     return render(request,'app_wall/index.html', context)
 
@@ -16,3 +17,15 @@ def add_users(request):
 def userlogin(request):
     return render(request,'app_wall/login.html')
 
+def wallpage(request,id):
+    user = User.objects.get(id = id)
+    print request.POST
+    if 'messages' in request.POST:
+        Message.objects.create(messages=request.POST['messages'],user = user)
+    return redirect('/')
+    #return render(request,'app_wall/posts.html')
+
+def loginUser(request):
+    print request.POST['emailid']
+    print request.POST['password']
+    return render(request,'app_wall/posts.html')

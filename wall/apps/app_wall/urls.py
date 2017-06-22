@@ -4,5 +4,6 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^result$', views.add_users),
     url(r'^loginpage$', views.userlogin),
-    url(r'^wall$', views.wallpage) # This line has changed!
+    url(r'^wall/(?P<id>\d+)$', views.wallpage), # This line has changed!
+    url(r'^wall$', views.loginUser)
   ]
