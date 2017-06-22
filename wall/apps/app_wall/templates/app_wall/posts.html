@@ -8,7 +8,7 @@
       {% for msg in messages1 %}
         {{msg.message}}
       {% endfor %}
-
+        {{users}}
         <form action="/wall/{{user.id}}" method ="post">
         {% csrf_token %}
         

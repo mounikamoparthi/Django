@@ -5,38 +5,57 @@
    
     </head>
     <body>
-      <h1>Registration Form</h1>
-        {% for user in users %}
-            {{user.first_name}}, {{user.last_name}}, {{user.emailid}}, {{user.password}}
-        {% endfor %}
+      <h1>Registration </h1>
+       {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-        <form action="/result" method ="post">
+        {% for user in users %}
+            {{user.first_name}},{{user.last_name}},{{user.emailid}},{{user.password}},{{user.id}}
+        {% endfor %}
+        <form action="/register" method ="post">
         {% csrf_token %}
         <p>
         <label for="first_name">FirstName:</label>
-
         <input type="text" id ="firstname" name="first_name">
         </p>
         <p>
         <label for="last_name">LastName:</label>
         <input type="text" id ="lastname" name="last_name">
-
         </p>
-                <p>
+        <p>
         <label for="emailid">Email Id:</label>
         <input type="text" id ="emailid" name="emailid">
 
         </p><p>
         <label for="password">PASSWORD:</label>
         <input type="password" id ="password" name="password">
-        </p><p>
-
-        <input  type="submit" value="Register">
         </p>
+        <p>
+        <label for="reenterpassword">Reenter PASSWORD:</label>
+        <input type="password" id ="password" name="reenterpassword">
+        </p><p>
+        <input type = "hidden" name = "action" value="Register">
+        <input  type="submit" value="Register">
         </form>
-       <form action = '/loginpage' method = 'get'>
-       {% csrf_token %}
-            <input type = 'submit' name = "submit" value = 'Login'>
+
+        <h1> LOGIN </h1>
+        <form action="/login" method ="post">
+        {% csrf_token %}
+            <p>
+            <label for="emailid">Email Id:</label>
+            <input type="text" id ="emailid" name="emailid"
+            </p><p>
+            <label for="password">PASSWORD:</label>
+            <input type="password" id ="password" name="password"
+            </p><p>
+            <input type = "hidden" name = "action" value="Login">
+            <input  type="submit" value="Login">
+            </p>
         </form>
     </body>
 </html>

@@ -2,30 +2,24 @@
 #from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import User, Message, Comment
 def index(request):
+    print User.objects.all().delete()
     context = {
-        "users": User.objects.all(),
-        "message11": Message.objects.all()
+        'users' :  User.objects.all()
     }
     return render(request,'app_wall/index.html', context)
 
-def add_users(request):
-    User.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], emailid=request.POST['emailid'], password=request.POST['password'])
+def registration(request):
+    result = User.objects.register(request.POST)
+    if not result['status']:
+        for error in result['errors']:
+            messages.error(request,error)
+    else:
+        messages.success(request,"Successful")
     return redirect('/')
 
-def userlogin(request):
-    return render(request,'app_wall/login.html')
+def loginuser(request):
+    return render(request,'app_wall/index.html')
 
-def wallpage(request,id):
-    user = User.objects.get(id = id)
-    print request.POST
-    if 'messages' in request.POST:
-        Message.objects.create(messages=request.POST['messages'],user = user)
-    return redirect('/')
-    #return render(request,'app_wall/posts.html')
-
-def loginUser(request):
-    print request.POST['emailid']
-    print request.POST['password']
-    return render(request,'app_wall/posts.html')
