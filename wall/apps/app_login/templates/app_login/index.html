@@ -19,7 +19,7 @@
         {% endif %}
 
         
-        <form action="/register" method ="post">
+        <form action= "{% url 'my_registration'%}" method ="post">
         {% csrf_token %}
         <p>
         <label for="first_name">FirstName:</label>
@@ -46,7 +46,7 @@
         </form>
 
         <h1> Login </h1>
-        <form action="/login" method ="post">
+        <form action="{% url 'my_registration' %}" method ="post">
         {% csrf_token %}
             <p>
             <label for="emailid">Email Id:</label>

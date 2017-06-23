@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+import bcrypt
 
 class UserManager(models.Manager):
     def register(self, postData):
@@ -38,7 +39,7 @@ class UserManager(models.Manager):
                     results['user'] = y
             return results
 
-        def loginval(self, postData):
+    def loginval(self, postData):
             results = {'status': True, 'errors': [],'user':None}
             if not postData['emailid']:
                 results['status'] = False

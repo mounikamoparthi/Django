@@ -20,7 +20,7 @@ def registration(request):
             messages.error(request,error)
     else:
         messages.success(request,"Successful")
-    return redirect(reverse('my_index')
+    return redirect(reverse('my_index'))
 
 def loginuser(request):
     result = User.objects.loginval(request.POST)

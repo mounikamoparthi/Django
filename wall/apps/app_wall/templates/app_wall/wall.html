@@ -7,7 +7,7 @@
         <h1> Welcome {{name}} </h1>
         {{id}}
 
-        <form action="/wall" method ="post">
+        <form action="{% url 'my_wall' %}" method ="post">
                 {% csrf_token %}
             <p>
             <label for="">Title</label>
@@ -23,7 +23,7 @@
         {% for blogs in blog %}
         <td>
         <tr><br> <br>{{blogs.user1.first_name}}, {{blogs.created_at}} <br> {{blogs.message}} <br> <br> </tr>
-        <form action = '/wall' method="post">
+        <form action = "{% url 'my_wall' %}" method="post">
                 {% csrf_token %}
             
                 <input type = "hidden" name = 'msgid' value = {{blogs.id}}>

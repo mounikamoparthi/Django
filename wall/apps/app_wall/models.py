@@ -47,13 +47,13 @@ class Message(models.Model):
     message = models.TextField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-    user1 = models.ForeignKey(app_login.User, related_name="users1")
+    user1 = models.ForeignKey('app_login.User', related_name="users1")
     #msg
 class Comment(models.Model):
     comment = models.TextField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-    user = models.ForeignKey(app_login.User, related_name="users")
+    user = models.ForeignKey('app_login.User', related_name="users")
     message = models.ForeignKey(Message, related_name="msg")
 
 
