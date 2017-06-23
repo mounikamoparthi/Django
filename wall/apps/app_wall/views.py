@@ -6,10 +6,10 @@ from django.contrib import messages
 from .models import User, Message, Comment
 def index(request):
     #User.objects.all().delete()
-    context = {
-        'users' :  User.objects.all()
-    }
-    return render(request,'app_wall/index.html', context)
+    #context = {
+     #   'users' :  User.objects.all()
+    #}
+    return render(request,'app_wall/index.html') #context
 
 def registration(request):
     result = User.objects.register(request.POST)
