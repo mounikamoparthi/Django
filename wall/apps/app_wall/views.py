@@ -55,6 +55,8 @@ def wallpage(request):
         "id" :request.session['user_id']
         }
         return render(request,'app_wall/wall.html', context)
+
+
     
    
 
