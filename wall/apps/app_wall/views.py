@@ -70,9 +70,9 @@ def wallpage(request):
     else:
             print "ENTERED GET"
             context = {
-                    'blog' :  Message.objects.all(),
+                    'blog' :  Message.objects.order_by('-id'),
                     "name": request.session['first_name'],
-                    "usercomments" : Comment.objects.all()
+                    "usercomments" : Comment.objects.order_by('-id')
                 }
     return render(request,'app_wall/wall.html', context)
 
