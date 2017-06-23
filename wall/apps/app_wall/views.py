@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import User, Message, Comment
 def index(request):
-    #print User.objects.all().delete()
+    #User.objects.all().delete()
     context = {
         'users' :  User.objects.all()
     }
@@ -35,29 +35,50 @@ def loginuser(request):
         return redirect('/wall')
 
 def wallpage(request):
-    print request.method
+    #Message.objects.all().delete()
     if request.method == "POST":
-        context ={
-        "name": request.session['first_name'],
-        "id" :request.session['user_id'] 
-        }
-        #user_id=int(id)
-        user1 = User.objects.get(id = context['id'])
-        print user1
-        print request.POST
-        if 'messages' in request.POST:
-            Message.objects.create(message=request.POST['messages'],user1 = user1)
-        return redirect('/wall')
+        if request.POST['action'] == "postmsg":
+            context = {
+                "name": request.session['first_name'],
+                "id" :request.session['user_id']
+                }
+            result = User.objects.addmsgs(request.POST,context)
+            print request.method
+            if not result['status']:
+                for error in result['errors']:
+                    messages.error(request,error)
+                    return redirect('/wall')
+            else: 
+                messages.success(request,"Successful")
+                return redirect('/wall')
+        else:
+            context = {
+                "name": request.session['first_name'],
+                "id" :request.session['user_id']
+                }
+            result = User.objects.addcomments(request.POST,context)
+            print request.method
+            if not result['status']:
+                for error in result['errors']:
+                    messages.error(request,error)
+                    return redirect('/wall')
+            else: 
+                messages.success(request,"Successful")
+                return redirect('/wall')
+
+            print "DIDNT ENTER"
     else:
-        context = {
-        'blog' :  Message.objects.all(),
-        "name": request.session['first_name'],
-        "id" :request.session['user_id']
-        }
-        return render(request,'app_wall/wall.html', context)
+            print "ENTERED GET"
+            context = {
+                    'blog' :  Message.objects.all(),
+                    "name": request.session['first_name'],
+                    "usercomments" : Comment.objects.all()
+                }
+    return render(request,'app_wall/wall.html', context)
 
 
-    
+
+
    
 
 

@@ -71,6 +71,44 @@ class UserManager(models.Manager):
                 print "please regitser"
                 results['errors'].append("Please Register")
         return results
+    
+    def addmsgs(request,postData,sessiondata):
+        print " In addmsgs %%%%%%%%%%%"
+        results = {'status': True, 'errors': []}
+        if len(postData['messages'])<1:
+            print "In validation "
+            result['status'] = False
+            results['errors'].append("Please enter a valid post")
+            return results
+        user1 = User.objects.get(id = sessiondata['id'])
+        print "Successfully done@@@@@@@@@@@@@@"
+        if postData['messages']:
+            Message.objects.create(message=postData['messages'],user1 = user1)
+            results['status'] = True
+            print "Successfully done!!!!!!!!!"
+        print "Not Succesful*************"
+        return results
+
+    def addcomments(request,postData,sessiondata):
+        print " In addmsgs %%%%%%%%%%%"
+        results = {'status': True, 'errors': []}
+        if len(postData['commenting'])<1:
+            print "In validation "
+            result['status'] = False
+            results['errors'].append("Please enter a valid post")
+            return results
+        user = User.objects.get(id = sessiondata['id'])
+        #print postData
+        print postData['msgid']
+        message = Message.objects.get(id = postData['msgid'])
+      
+        if postData['commenting']:
+            Comment.objects.create(comment=postData['commenting'],user = user, message = message)
+            results['status'] = True
+            print "Successfully done!!!!!!!!!"
+        print "Not Succesful*************"
+        return results
+        
 
 class User(models.Model):
     first_name = models.CharField(max_length=38)
@@ -81,12 +119,12 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()
     #users1
+    #users
 class Message(models.Model):
     message = models.TextField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     user1 = models.ForeignKey(User, related_name="users1")
-    #users
     #msg
 class Comment(models.Model):
     comment = models.TextField(max_length=1000)
