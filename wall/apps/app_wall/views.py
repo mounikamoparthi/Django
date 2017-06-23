@@ -3,36 +3,8 @@
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import User, Message, Comment
-def index(request):
-    #User.objects.all().delete()
-    #context = {
-     #   'users' :  User.objects.all()
-    #}
-    return render(request,'app_wall/index.html') #context
-
-def registration(request):
-    result = User.objects.register(request.POST)
-    if not result['status']:
-        for error in result['errors']:
-            messages.error(request,error)
-    else:
-        messages.success(request,"Successful")
-    return redirect('/')
-
-def loginuser(request):
-    result = User.objects.loginval(request.POST)
-    if not result['status']:
-        for error in result['errors']:
-            messages.error(request,error)
-        return redirect('/')
-    else:
-        messages.success(request,"Successful")
-        request.session['emailid'] = result['user'].emailid
-        request.session['first_name'] = result['user'].first_name
-        request.session['user_id'] = result['user'].id
-        print result['user'].emailid
-        return redirect('/wall')
+from .models import Message, Comment
+from django.core.urlresolvers import reverse
 
 def wallpage(request):
     #Message.objects.all().delete()
@@ -47,10 +19,10 @@ def wallpage(request):
             if not result['status']:
                 for error in result['errors']:
                     messages.error(request,error)
-                    return redirect('/wall')
+                    return redirect(reverse('my_wall'))
             else: 
                 messages.success(request,"Successful")
-                return redirect('/wall')
+                return redirect(reverse('my_wall'))
         else:
             context = {
                 "name": request.session['first_name'],
@@ -61,10 +33,10 @@ def wallpage(request):
             if not result['status']:
                 for error in result['errors']:
                     messages.error(request,error)
-                    return redirect('/wall')
+                    return redirect(reverse('my_wall'))
             else: 
                 messages.success(request,"Successful")
-                return redirect('/wall')
+                return redirect(reverse('my_wall'))
 
             print "DIDNT ENTER"
     else:
