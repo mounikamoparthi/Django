@@ -61,6 +61,7 @@ class UserManager(models.Manager):
                     if bcrypt.hashpw(password,y) == y:
                         results['status'] = True
                         print ("*****It matches**********")
+                        results['user'] = x[0]
                     else:
                         results['status'] =False
                         results['errors'].append("Invalid credentials")

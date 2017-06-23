@@ -25,9 +25,39 @@ def loginuser(request):
     if not result['status']:
         for error in result['errors']:
             messages.error(request,error)
+        return redirect('/')
     else:
         messages.success(request,"Successful")
-    return redirect('/')
+        request.session['emailid'] = result['user'].emailid
+        request.session['first_name'] = result['user'].first_name
+        request.session['user_id'] = result['user'].id
+        print result['user'].emailid
+        return redirect('/wall')
+
+def wallpage(request):
+    print request.method
+    if request.method == "POST":
+        context ={
+        "name": request.session['first_name'],
+        "id" :request.session['user_id'] 
+        }
+        #user_id=int(id)
+        user1 = User.objects.get(id = context['id'])
+        print user1
+        print request.POST
+        if 'messages' in request.POST:
+            Message.objects.create(message=request.POST['messages'],user1 = user1)
+        return redirect('/wall')
+    else:
+        context = {
+        'blog' :  Message.objects.all(),
+        "name": request.session['first_name'],
+        "id" :request.session['user_id']
+        }
+        return render(request,'app_wall/wall.html', context)
+    
+   
+
 
 
 

@@ -3,5 +3,6 @@ from . import views           # This line is new!
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^register$', views.registration),
-    url(r'^login$', views.loginuser)
+    url(r'^login$', views.loginuser),
+    url(r'^wall$', views.wallpage)
   ]
